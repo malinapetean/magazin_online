@@ -1,0 +1,3 @@
+﻿10,1000,2,240,the best
+11,1001,1,30,high quality
+12,1002,3,200,very soft and hydrathing

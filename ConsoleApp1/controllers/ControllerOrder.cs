@@ -1,11 +1,64 @@
-﻿using System;
+﻿using Magazin_online.Models;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace Magazin_online.controllers
 {
     class ControllerOrder
     {
+        private List<Order> orders;
 
+        public ControllerOrder()
+        {
+            orders = new List<Order>();
+            this.load();
+        }
+        public void load()
+        {
+            orders.Clear();
+            StreamReader read = new StreamReader(@"D:\mycode\csharp\Mostenirea\Magazin_online\ConsoleApp1\resorces\orders.txt");
+            string txt = "";
+
+            this.orders.Clear();
+            while ((txt = read.ReadLine()) != null)
+            {
+                this.orders.Add(new Order(txt));
+            }
+            read.Close();
+        }
+        public void display(List<Order> list)
+        {
+            foreach (Order o in list)
+            {
+                Console.WriteLine(o.description());
+            }
+        }
+        public override string ToString()
+        {
+            String text = "";
+            foreach (Order o in orders)
+            {
+                text += o.ToString() + "\n";
+            }
+            return text;
+        }
+
+        public void save()
+        {
+            StreamWriter write = new StreamWriter(@"D:\mycode\csharp\Mostenirea\Magazin_online\ConsoleApp1\resorces\orders.txt");
+            write.Write(this);
+            write.Close();
+        }
+        public int nextId()
+        {
+            int nr = orders.Count;
+            return orders[nr - 1].ID + 1;
+        }
     }
 }
+
+
+
+

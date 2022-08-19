@@ -49,6 +49,16 @@ namespace Magazin_online.controllers
             write.Write(this);
             write.Close();
         }
+        public int nextId()
+        {
+            int nr = products.Count;
+            return products[nr - 1].ID + 1;
+        }
+
+        public List<Product> getAll()
+        {
+            return this.products;
+        }
     }
 
     

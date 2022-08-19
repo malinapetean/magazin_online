@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Magazin_online.Models
 {
-    class Product
+    public class Product
     {
         private int id;
         private int price;

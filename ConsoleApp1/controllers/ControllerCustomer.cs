@@ -51,6 +51,10 @@ namespace Magazin_online.controllers
             write.Write(this);
             write.Close();
         }
-
+        public int nextId()
+        {
+            int nr = customers.Count;
+            return customers[nr - 1].ID + 1;
+        }
     }
 }

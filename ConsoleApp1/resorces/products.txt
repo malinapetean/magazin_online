@@ -1,1 +1,5 @@
-﻿
+﻿1,fixativ,15,150
+2,parfum,60,20
+3,lotiune,40,66
+4,crema de corp,65,50
+5,sampon,30,200
