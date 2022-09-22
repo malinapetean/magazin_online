@@ -59,6 +59,17 @@ namespace Magazin_online.controllers
         {
             return this.products;
         }
+        public Product getProdByID(int id)
+        {
+            foreach (Product p in products)
+            {
+                if (p.ID.Equals(id))
+                {
+                    return p;
+                }
+            }
+            return null;
+        }
     }
 
     

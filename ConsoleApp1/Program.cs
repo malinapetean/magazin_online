@@ -10,12 +10,15 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             Order o = new Order(1001, 100, 3);
-            Product p = new Product(6, "lapte de corp", 40, 20);
+            Product p = new Product(6, "lapte de corp", 40, 20,"aaaaaa","crema");
             ControllerProduct ctrl = new ControllerProduct();
             List<Product> list = ctrl.getAll();
-            ctrl.display(list);
+            //ctrl.display(list);
 
             list.Add(p);
+
+
+
             ctrl.display(list);
         }
     }

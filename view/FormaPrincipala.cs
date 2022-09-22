@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Magazin_online.controllers;
+using Magazin_online.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,12 +12,69 @@ using System.Windows.Forms;
 
 namespace view
 {
-    public partial class Form1 : Form
+    public partial class FormaPrincipala : Form
     {
-        public Form1()
+        private ControllerProduct ctrlproducts;
+        private User user = new Customer("customer", 100, "alex@yahoo.com", "11234", "Alex Luca", 4);
+        private Button btnprod;
+        public FormaPrincipala()
         {
             InitializeComponent();
+            this.ctrlproducts = new ControllerProduct();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.WindowState = FormWindowState.Maximized;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
+            this.btnprod = new Button();
+            this.btnprod.Click += new EventHandler(products_Click);
+            this.Controls.Add(new PnlHeader(btnprod,this));
+            this.Controls.Add(new PnlMain(ctrlproducts.getAll(),this));
+            
         }
+        public void erasePanel(String name)
+        {
+            Control cautat = null;
 
+            foreach (Control aux in this.Controls)
+            {
+                if (aux.Name.Equals(name))
+                {
+                    cautat = aux;
+                }
+            }
+
+            if (cautat != null)
+                this.Controls.Remove(cautat);
+        }
+        public bool searchPanel(String panel)
+        {
+            Control p = null;
+            foreach (Control control in this.Controls)
+            {
+                if (control.Name.Equals(panel))
+                {
+                    p = control;
+                    return true;
+                }
+            }
+            return false;
+        }
+        private void products_Click(object sender, EventArgs e)
+        {
+            if (searchPanel("PnlMain"))
+                erasePanel("PnlMain");
+            if (searchPanel("PnlAdd"))
+                erasePanel("PnlAdd");
+            if (searchPanel("PnlUpdate"))
+                erasePanel("PnlUpdate");
+            if (searchPanel("PnlSignIn"))
+                erasePanel("PnlSignIn");
+            this.Controls.Add(new PnlMain(ctrlproducts.getAll(), this));
+
+        }
+        private void FormaPrincipala_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -8,11 +8,11 @@ namespace Magazin_online.controllers
 {
     class ControllerCustomer
     {
-        private List<Customer> customers;
+        private List<User> customers;
 
         public ControllerCustomer()
         {
-            customers = new List<Customer>();
+            customers = new List<User>();
             this.load();
         }
         public void load()
@@ -24,13 +24,13 @@ namespace Magazin_online.controllers
             this.customers.Clear();
             while ((txt = read.ReadLine()) != null)
             {
-                this.customers.Add(new Customer(txt));
+                this.customers.Add(new User(txt));
             }
             read.Close();
         }
-        public void display(List<Customer> list)
+        public void display(List<User> list)
         {
-            foreach (Customer c in list)
+            foreach (User c in list)
             {
                 Console.WriteLine(c.description());
             }
@@ -38,7 +38,7 @@ namespace Magazin_online.controllers
         public override string ToString()
         {
             String text = "";
-            foreach (Customer c in customers)
+            foreach (User c in customers)
             {
                 text += c.ToString() + "\n";
             }

@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "Magazin_online/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/Magazin_online.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Magazin_online.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Magazin_online/1.0.0": {
+      "type": "project",
+      "path": "../ConsoleApp1/Magazin_online.csproj",
+      "msbuildProject": "../ConsoleApp1/Magazin_online.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "Magazin_online >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Ica\\.nuget\\packages\\": {},
@@ -41,7 +60,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\mycode\\csharp\\Mostenirea\\Magazin_online\\ConsoleApp1\\Magazin_online.csproj": {
+              "projectPath": "D:\\mycode\\csharp\\Mostenirea\\Magazin_online\\ConsoleApp1\\Magazin_online.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

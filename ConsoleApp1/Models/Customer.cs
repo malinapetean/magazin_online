@@ -4,63 +4,38 @@ using System.Text;
 
 namespace Magazin_online.Models
 {
-    class Customer
+    public class Customer:User
     {
-        private int id;
-        private string email="";
-        private string password="";
-        private string full_name = "";
+        private int numberOfOrders;
 
-        public int ID
+        public Customer(string tip,int id, string email, string password, string fullname,int numberOrders):base(tip,id,email,password,fullname)
         {
-            get => this.id;
-            set => this.id = value;
+            this.numberOfOrders = numberOrders;
         }
-        public string Email
+        public Customer(string text):base( text)
         {
-            get => this.email;
-            set => this.email = value;
+            this.numberOfOrders = int.Parse(text.Split(",")[5]);
         }
-        public string Password
+        public int NumberOrders
         {
-            get => this.password;
-            set => this.password = value;
+            get => this.numberOfOrders;
+            set => this.numberOfOrders = value;
         }
-        public string Full_Name
-        {
-            get => this.full_name;
-            set => this.full_name = value;
-        }
-
-        public Customer(string text)
-        {
-            this.id = int.Parse(text.Split(",")[0]);
-            this.email = text.Split(",")[1];
-            this.password = text.Split(",")[2];
-            this.full_name = text.Split(",")[3];
-        }
-
-        public Customer(int id, string email, string password,string fullname)
-        {
-            this.id = id;
-            this.email = email;
-            this.password = password;
-            this.full_name = fullname;
-        }
-        public string description()
+        public override string description()
         {
             string text = "";
-            text += "Customer id: " + this.id + "\n";
-            text += "Email: " + this.email+ "\n";
-            text += "Password: " + this.password + "\n";
-            text += "Full name: " + this.full_name + "\n";
+            text += "Type: " + this.Tip + "\n";
+            text += "User id: " + this.ID + "\n";
+            text += "Email: " + this.Email + "\n";
+            text += "Password: " + this.Password + "\n";
+            text += "Full name: " + this.FullName + "\n";
+            text += "Number of orders: " + this.numberOfOrders + "\n";
             return text;
         }
-
         public override string ToString()
         {
             string text = "";
-            text += this.id + "," + this.email + "," + this.password + "," + this.full_name;
+            text += this.Tip + "," + this.ID + "," + this.Email + "," + this.Password + "," + this.FullName+","+this.numberOfOrders;
             return text;
         }
 

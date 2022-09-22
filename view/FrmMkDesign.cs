@@ -14,5 +14,10 @@ namespace view
         {
             InitializeComponent();
         }
+
+        private void FrmMkDesign_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
