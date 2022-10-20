@@ -6,14 +6,16 @@ using System.Text;
 
 namespace Magazin_online.controllers
 {
-    class ControllerOrderDetails
+    public class ControllerOrderDetails
     {
-        private List<Order_details> orderDetails;
+        private List<OrderDetails> orderDetails;
+       
 
         public ControllerOrderDetails()
         {
-            orderDetails = new List<Order_details>();
+            orderDetails = new List<OrderDetails>();
             this.load();
+        
         }
         public void load()
         {
@@ -24,7 +26,7 @@ namespace Magazin_online.controllers
             this.orderDetails.Clear();
             while ((txt = read.ReadLine()) != null)
             {
-                this.orderDetails.Add(new Order_details(txt));
+                this.orderDetails.Add(new OrderDetails(txt));
             }
             read.Close();
         }
@@ -38,7 +40,7 @@ namespace Magazin_online.controllers
         public override string ToString()
         {
             String text = "";
-            foreach (Order_details o in orderDetails)
+            foreach (OrderDetails o in orderDetails)
             {
                 text += o.ToString() + "\n";
             }
@@ -51,10 +53,93 @@ namespace Magazin_online.controllers
             write.Write(this);
             write.Close();
         }
+        public bool exist(OrderDetails o)
+        {
+            foreach (OrderDetails ord in orderDetails)
+            {
+                if (ord.Order_Id.Equals(o.Order_Id) && ord.Product_Id.Equals(o.Product_Id))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool addOderDetails(OrderDetails o)
+        {
+            if (this.orderDetails.Contains(o) == false)
+            {
+                this.orderDetails.Add(o);
+                return true;
+            }
+            return false;
+        }
+
+        public List<OrderDetails> ordersTaken(int orderId)
+        {
+            List<OrderDetails> list = new List<OrderDetails>();
+            foreach (OrderDetails o in orderDetails)
+            {
+                if (o.Order_Id == orderId)
+                {
+                    list.Add(o);
+                }
+            }
+            return list;
+
+
+        }
         public int nextId()
         {
             int nr = orderDetails.Count;
+
+            if (nr == 0)
+            {
+                return 1;
+            }
             return orderDetails[nr - 1].ID + 1;
+        }
+
+
+        //functie ce primeste ca parametru orderId si procduct id => orderDetails 
+        public OrderDetails getOrderDetails(int orderId, int productId)
+        {
+            foreach (OrderDetails o in orderDetails)
+            {
+                if (o.Order_Id == orderId && o.Product_Id == productId)
+                    return o;
+            }
+            return null;
+        }
+        public bool VerificareExistentaInCos(int productID,int orderID)
+        {
+            foreach (OrderDetails o in orderDetails)
+            {
+                if (o.Product_Id == productID && o.Order_Id==orderID)
+                    return true;
+            }
+            return false;
+        }
+        public void updateAmount(int productID,int orderID, int amount)
+        {
+
+            OrderDetails ordeDetails = getOrderDetails(orderID, productID);
+            ordeDetails.Amount += amount;
+
+
+        }
+        public void updateAmount2(int productID, int orderID, int amount)
+        {
+            OrderDetails ordeDetails = getOrderDetails(orderID, productID);
+            ordeDetails.Amount = amount;
+        }
+        public void deleteOrderDetails(int productID, int orderID)
+        {
+            for(int i=0;i<orderDetails.Count;i++)
+            {
+                if (orderDetails[i].Order_Id == orderID && orderDetails[i].Product_Id == productID)
+                    orderDetails.RemoveAt(i);
+            }
+            this.save();
         }
     }
 }

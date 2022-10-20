@@ -17,12 +17,13 @@ namespace view
         //private User user = new Admin();
         private FormaPrincipala form;
         private PictureBox picture;
-
-        public PnlCardProducts(Product product, FormaPrincipala form)
+        private Order order;
+        public PnlCardProducts(Product product,Order order, FormaPrincipala form)
         {
             control = new ControllerProduct();
             this.product = product;
             this.form = form;
+            this.order = order;
             this.Name = "PnlCardProduct";
             this.Size = new Size(150, 210);
             this.BackColor = Color.SeaShell;
@@ -39,8 +40,8 @@ namespace view
             price = new Label();
             price.Location = new Point(12, 166);
             price.Font = new Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            price.Size = new Size(60, 60);
-            price.Text = product.Price.ToString();
+            price.Size = new Size(90, 60);
+            price.Text = product.Price.ToString()+" lei";
             price.ForeColor = Color.Black;
             this.Controls.Add(price);
 
@@ -50,12 +51,12 @@ namespace view
             picture.Size = new Size(143, 120);
             picture.Image = Image.FromFile(Application.StartupPath + @"/imagini/" + this.product.Picture + ".jpg");
             this.Controls.Add(picture);
-            this.name.Click += new EventHandler(card_Click);
+            this.picture.Click += new EventHandler(card_Click);
         }
         private void card_Click(object sender, EventArgs e)
         {
             this.form.erasePanel("PnlMain");
-            this.form.Controls.Add(new PnlDetails( form, control.getProdByID(product.ID)));
+            this.form.Controls.Add(new PnlDetails( form, control.getProdByID(product.ID),order));
         }
     }
 }

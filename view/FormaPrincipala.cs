@@ -17,18 +17,31 @@ namespace view
         private ControllerProduct ctrlproducts;
         private User user = new Customer("customer", 100, "alex@yahoo.com", "11234", "Alex Luca", 4);
         private Button btnprod;
+        private Button btnsend;
+        private Order order;
+        private ControllerOrder controlOrder;
+
         public FormaPrincipala()
         {
             InitializeComponent();
             this.ctrlproducts = new ControllerProduct();
+            this.controlOrder = new ControllerOrder();
+            this.order = new Order(controlOrder.nextId(), 100, 0,false);
+
+            controlOrder.addOrder(order);
+
+
+            controlOrder.save();
+        
             this.StartPosition = FormStartPosition.CenterScreen;
             this.WindowState = FormWindowState.Maximized;
             this.MinimizeBox = false;
             this.MaximizeBox = false;
             this.btnprod = new Button();
+            this.btnsend = new Button();
             this.btnprod.Click += new EventHandler(products_Click);
-            this.Controls.Add(new PnlHeader(btnprod,this));
-            this.Controls.Add(new PnlMain(ctrlproducts.getAll(),this));
+            this.Controls.Add(new PnlHeader(order,btnprod,btnsend,this));
+            this.Controls.Add(new PnlMain(ctrlproducts.getAll(),order,this));
             
         }
         public void erasePanel(String name)
@@ -69,7 +82,7 @@ namespace view
                 erasePanel("PnlUpdate");
             if (searchPanel("PnlSignIn"))
                 erasePanel("PnlSignIn");
-            this.Controls.Add(new PnlMain(ctrlproducts.getAll(), this));
+            this.Controls.Add(new PnlMain(ctrlproducts.getAll(),order, this));
 
         }
         private void FormaPrincipala_Load(object sender, EventArgs e)

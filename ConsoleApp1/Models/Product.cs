@@ -6,7 +6,7 @@ namespace Magazin_online.Models
 {
     public class Product
     {
-        private int id;
+        private int id; 
         private int price;
         private int stock;
         private string name="";
@@ -49,6 +49,7 @@ namespace Magazin_online.Models
             this.price = int.Parse(line.Split(",")[2]);
             this.stock = int.Parse(line.Split(",")[3]);
             this.details = line.Split(",")[4];
+            this.picture = line.Split(",")[5];
 
         }
 
@@ -78,6 +79,15 @@ namespace Magazin_online.Models
             string text = "";
             text += this.id + "," + this.name + "," + this.price + "," + this.stock + "," + this.details + "," + this.picture;
             return text;
+        }
+
+        public override bool Equals(object obj)
+        {
+
+
+            Product p = obj as Product;
+
+            return p.Name.Equals(this.name);
         }
     }
 }

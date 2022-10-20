@@ -9,17 +9,19 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Order o = new Order(1001, 100, 3);
+            Order o = new Order(1001, 100, 3,false);
+            ControllerOrder ctrlOrder = new ControllerOrder();
             Product p = new Product(6, "lapte de corp", 40, 20,"aaaaaa","crema");
             ControllerProduct ctrl = new ControllerProduct();
             List<Product> list = ctrl.getAll();
             //ctrl.display(list);
-
-            list.Add(p);
-
-
-
-            ctrl.display(list);
+            OrderDetails ord = new OrderDetails(4, o.ID, p.ID, p.Price, 5);
+            ControllerOrderDetails ordDet = new ControllerOrderDetails();
+            //ordDet.addOderDetails(ord);
+            
+            ordDet.deleteOrderDetails(4, 8);
+            ordDet.updateAmount(6, 9, 1);
+            ordDet.save();
         }
     }
 }

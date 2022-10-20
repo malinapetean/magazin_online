@@ -9,7 +9,6 @@ namespace Magazin_online.controllers
     public class ControllerProduct
     {
         private List<Product> products;
-
         public ControllerProduct()
         {
             products = new List<Product>();
@@ -69,6 +68,34 @@ namespace Magazin_online.controllers
                 }
             }
             return null;
+        }
+
+        public bool existance(Product prod)
+        {
+            foreach(Product p in products)
+            {
+                if (p.ID == prod.ID)
+                    return true;
+            }
+            return false;
+        }
+
+        public  bool addProduct(Product prod)
+        {
+            if(this.products.Contains(prod)==false)
+            {
+                this.products.Add(prod);
+                return true;
+            }
+            return false;
+        }
+        public void deleteOrderDetails(Product prod)
+        {
+            if (this.products.Contains(prod)==true)
+            {
+                products.Remove(prod);
+            }
+            this.save();
         }
     }
 

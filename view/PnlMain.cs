@@ -14,15 +14,15 @@ namespace view
         private ControllerProduct control;
         private List<PnlCardProducts> cards;
         private FormaPrincipala form;
-
-        public PnlMain(List<Product> products, FormaPrincipala form)
+        private Order order;
+        public PnlMain(List<Product> products,Order order, FormaPrincipala form)
         {
             this.cards = new List<PnlCardProducts>();
             this.control = new ControllerProduct();
             this.form = form;
             this.products = products;
             base.Parent = form;
-            
+            this.order = order;
             this.Location = new Point(0, 70);
             this.BackColor = Color.BurlyWood;
             
@@ -54,12 +54,12 @@ namespace view
             this.Controls.Clear();
 
             int x = 30, y = 100, ct = 0;
-
+                
 
             foreach (Product p in products)
             {
                 ct++;
-                PnlCardProducts pnlprod = new PnlCardProducts(p, form);
+                PnlCardProducts pnlprod = new PnlCardProducts(p,order, form);
                 pnlprod.Location = new Point(x, y);
                 this.Controls.Add(pnlprod);
                 this.cards.Add(pnlprod);

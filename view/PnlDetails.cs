@@ -1,4 +1,5 @@
-﻿using Magazin_online.controllers;
+﻿using FontAwesome.Sharp;
+using Magazin_online.controllers;
 using Magazin_online.Models;
 using System;
 using System.Collections.Generic;
@@ -22,13 +23,17 @@ namespace view
         private ControllerProduct products;
         private FormaPrincipala form;
         private Product prod;
-        public PnlDetails(FormaPrincipala form,Product p)
+        private Order order;
+        private ControllerOrderDetails orderDetails;
+
+        public PnlDetails(FormaPrincipala form,Product p,Order order)
         {
-            
+            orderDetails = new ControllerOrderDetails();
             products = new ControllerProduct();
             this.prod = p;
             this.form = form;
             base.Parent = form;
+            this.order = order;
             this.Location = new Point(0, 100);
             this.BackColor = Color.Wheat;
             this.Name = "PnlDetails";
@@ -67,6 +72,13 @@ namespace view
             productname.BackColor = Color.Wheat;
             this.Controls.Add(productname);
 
+            picture = new PictureBox();
+            picture.Location = new Point(10,125);
+            picture.SizeMode = PictureBoxSizeMode.Zoom;
+            picture.Size = new Size(443, 337);
+            picture.Image = Image.FromFile(Application.StartupPath + @"/imagini/" + this.prod.Picture + ".jpg");
+            this.Controls.Add(picture);
+
             description = new Label();
             description.Font = labels;
             description.Location = new Point(484, 120);
@@ -95,11 +107,48 @@ namespace view
             btnReturn.BackColor = Color.PapayaWhip;
             this.Controls.Add(btnReturn);
             btnReturn.Click += new EventHandler(return_Click);
+
+            btnaddtobag = new Button();
+            btnaddtobag.Location = new Point(484, 410);
+            btnaddtobag.Size = new Size(145, 40);
+            btnaddtobag.FlatStyle = FlatStyle.Flat;
+            btnaddtobag.Text = "Add to bag";
+            btnaddtobag.Font = new Font("Times New Roman", 14,FontStyle.Bold);
+            btnaddtobag.ForeColor = Color.Black;
+            btnaddtobag.BackColor = Color.PapayaWhip;
+            //btnaddtobag.Image = Image.FromStream(IconChar.Institution.ToBitmap(16, Color.Aqua));
+            this.Controls.Add(btnaddtobag);
+            btnaddtobag.Click += new EventHandler(add_Click);
         }
+
+        
+        private void add_Click(object sender, EventArgs e) 
+        {
+            //are deja produsl in cos atunci trebuie updatat orderuldetails din care face parte daca nu trebuie creat unu nou
+            if(orderDetails.VerificareExistentaInCos(prod.ID,order.ID)==false)
+            {
+                OrderDetails orderDet = new OrderDetails(orderDetails.nextId(), order.ID, prod.ID, prod.Price, 1);
+
+                this.orderDetails.addOderDetails(orderDet);
+                this.orderDetails.save();
+
+               
+            }
+            else if(orderDetails.VerificareExistentaInCos(prod.ID, order.ID) == true)
+            {
+
+                orderDetails.updateAmount( prod.ID, order.ID, 1);
+
+                this.orderDetails.save();
+            }
+
+            
+        }
+
         private void return_Click(object sender, EventArgs e)
         {
 
-            this.form.Controls.Add(new PnlMain(this.products.getAll(), form));
+            this.form.Controls.Add(new PnlMain(this.products.getAll(),order, form));
             this.products.load();
             this.form.Controls.Remove(this);
         }

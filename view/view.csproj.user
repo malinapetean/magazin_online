@@ -7,11 +7,20 @@
     <Compile Update="FrmMkCardProduct.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FrmMkCos1.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FrmMkDesign.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FrmMkDetails.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PnlBag.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="PnlCardCos.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Update="PnlCardProducts.cs">
       <SubType>Component</SubType>

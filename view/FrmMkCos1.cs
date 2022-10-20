@@ -8,20 +8,14 @@ using System.Windows.Forms;
 
 namespace view
 {
-    public partial class FrmMkDetails : Form
+    public partial class FrmMkCos1 : Form
     {
-        public FrmMkDetails()
+        public FrmMkCos1()
         {
             InitializeComponent();
-
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FrmMkDetails_Load(object sender, EventArgs e)
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
 
         }
