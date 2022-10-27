@@ -18,10 +18,8 @@ namespace ConsoleApp1
             OrderDetails ord = new OrderDetails(4, o.ID, p.ID, p.Price, 5);
             ControllerOrderDetails ordDet = new ControllerOrderDetails();
             //ordDet.addOderDetails(ord);
-            
-            ordDet.deleteOrderDetails(4, 8);
-            ordDet.updateAmount(6, 9, 1);
-            ordDet.save();
+
+            Console.WriteLine(ordDet.getOrderAmount(38));
         }
     }
 }

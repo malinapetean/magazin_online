@@ -16,7 +16,8 @@ namespace view
         private Button btnSendOrder;
         private FormaPrincipala form;
         private Order order;
-       
+        private ControllerOrder ctrlOrder;
+        private ControllerOrderDetails ctrlOrderDetails;
    
         public PnlHeader(Order order,Button products, Button sendOrder, FormaPrincipala form)
         {
@@ -50,8 +51,8 @@ namespace view
 
 
             btnSendOrder = sendOrder;
-            btnSendOrder.Location = new Point(this.Parent.Width - 250, 15);
-            btnSendOrder.Size = new Size(95, 40);
+            btnSendOrder.Location = new Point(this.Parent.Width - 300, 15);
+            btnSendOrder.Size = new Size(140, 40);
             btnSendOrder.FlatStyle = FlatStyle.Flat;
             btnSendOrder.Text = "Send Order";
             btnSendOrder.Font = new Font("Times New Roman", 12, FontStyle.Bold);
@@ -69,6 +70,8 @@ namespace view
             this.Size = new Size(this.Parent.Width, 70);
 
             this.products = new ControllerProduct();
+            this.ctrlOrder = new ControllerOrder();
+            this.ctrlOrderDetails = new ControllerOrderDetails();
         }
         private void label_Click(object sender, EventArgs e)
         {
@@ -95,9 +98,16 @@ namespace view
         {
 
 
-            this.form.erasePanel("PnlMain");
-            this.form.erasePanel("PnlDetails");
-            this.form.erasePanel("PnlBag");
+            if(ctrlOrder.verificareExistenta(order.ID)==true)
+            {
+                this.order.Confirm = true;
+                this.order.Ammount = ctrlOrderDetails.getOrderAmount(order.ID);
+                this.ctrlOrder.save();
+            }
+            else
+            {
+                MessageBox.Show("Add something in your bag!");
+            }
 
             
 

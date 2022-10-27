@@ -72,6 +72,16 @@ namespace Magazin_online.controllers
             return false;
 
         }
+        public bool verificareExistenta(int orderId)
+        {
+            foreach (Order o in orders)
+            {
+                if ( o.ID== orderId)
+                    return true;
+            }
+            return false;
+        }
+
         public void deleteOrder(Order o)
         {
             if (this.orders.Contains(o) == true)

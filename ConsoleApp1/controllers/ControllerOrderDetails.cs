@@ -110,6 +110,16 @@ namespace Magazin_online.controllers
             }
             return null;
         }
+        public int getOrderAmount(int orderId)
+        {
+            int amount = 0;
+            foreach(OrderDetails o in orderDetails)
+            {
+                if (o.Order_Id == orderId)
+                    amount += o.Amount;
+            }
+            return amount;
+        }
         public bool VerificareExistentaInCos(int productID,int orderID)
         {
             foreach (OrderDetails o in orderDetails)
