@@ -30,21 +30,21 @@ namespace view
             this.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             this.Dock = DockStyle.Fill;
 
-            createCards(this.Parent.Width / 220);
+            createCards(this.Parent.Width / 100);
             this.Resize += new EventHandler(main_Resize);
         }
         private void main_Resize(object sender, EventArgs e)
         {
 
-            if (this.Width < 460 + 150)
+            if (this.Width < 460 + 200)
                 createCards(1);
-            else if (this.Width < 740 + 150)
+            else if (this.Width < 740 + 200)
                 createCards(2);
-            else if (this.Width < 1020 + 150)
+            else if (this.Width < 1020 + 200)
                 createCards(3);
-            else if (this.Width < 1300 + 150)
+            else if (this.Width < 1300 + 200)
                 createCards(4);
-            else if (this.Width < 1580 + 150)
+            else if (this.Width < 1580 + 200)
                 createCards(5);
             else
                 createCards(6);
@@ -68,7 +68,7 @@ namespace view
                 if (ct % nrcollums == 0)
                 {
                     x = 30;
-                    y += 140;
+                    y += 250;
                 }
                 if (y > this.Height)
                 {

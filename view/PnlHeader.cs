@@ -39,7 +39,7 @@ namespace view
             this.order = order;
            
             btnCos = products;
-            btnCos.Location = new Point(this.Parent.Width-150, 15);
+            btnCos.Location = new Point(this.Parent.Width-130, 15);
             btnCos.Size = new Size(95, 40);
             btnCos.FlatStyle = FlatStyle.Flat;
             btnCos.Text = "Bag";
@@ -50,16 +50,16 @@ namespace view
             this.btnCos.Click += new EventHandler(bag_Click);
 
 
-            btnSendOrder = sendOrder;
-            btnSendOrder.Location = new Point(this.Parent.Width - 300, 15);
-            btnSendOrder.Size = new Size(140, 40);
-            btnSendOrder.FlatStyle = FlatStyle.Flat;
-            btnSendOrder.Text = "Send Order";
-            btnSendOrder.Font = new Font("Times New Roman", 12, FontStyle.Bold);
-            btnSendOrder.ForeColor = Color.Brown;
-            btnSendOrder.BackColor = Color.PapayaWhip;
-            this.Controls.Add(btnSendOrder);
-            this.btnSendOrder.Click += new EventHandler(send_Click);
+            //btnSendOrder = sendOrder;
+            //btnSendOrder.Location = new Point(this.Parent.Width - 300, 15);
+            //btnSendOrder.Size = new Size(140, 40);
+            //btnSendOrder.FlatStyle = FlatStyle.Flat;
+            //btnSendOrder.Text = "Send Order";
+            //btnSendOrder.Font = new Font("Times New Roman", 12, FontStyle.Bold);
+            //btnSendOrder.ForeColor = Color.Brown;
+            //btnSendOrder.BackColor = Color.PapayaWhip;
+            //this.Controls.Add(btnSendOrder);
+            //this.btnSendOrder.Click += new EventHandler(send_Click);
 
             this.form = form;
 
@@ -94,24 +94,7 @@ namespace view
             this.form.Controls.Add(new PnlBag(order, form));
 
         }
-        private void send_Click(object sender, EventArgs e)
-        {
-
-
-            if(ctrlOrder.verificareExistenta(order.ID)==true)
-            {
-                this.order.Confirm = true;
-                this.order.Ammount = ctrlOrderDetails.getOrderAmount(order.ID);
-                this.ctrlOrder.save();
-            }
-            else
-            {
-                MessageBox.Show("Add something in your bag!");
-            }
-
-            
-
-        }
+       
     }
 
 }

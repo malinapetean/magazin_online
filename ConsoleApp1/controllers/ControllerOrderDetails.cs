@@ -9,13 +9,13 @@ namespace Magazin_online.controllers
     public class ControllerOrderDetails
     {
         private List<OrderDetails> orderDetails;
-       
+
 
         public ControllerOrderDetails()
         {
             orderDetails = new List<OrderDetails>();
             this.load();
-        
+
         }
         public void load()
         {
@@ -30,9 +30,9 @@ namespace Magazin_online.controllers
             }
             read.Close();
         }
-        public void display(List<Order> list)
+        public void display(List<OrderDetails> list)
         {
-            foreach (Order o in list)
+            foreach (OrderDetails o in list)
             {
                 Console.WriteLine(o.description());
             }
@@ -73,7 +73,10 @@ namespace Magazin_online.controllers
             }
             return false;
         }
-
+        public List<OrderDetails> getAll()
+        {
+            return this.orderDetails;
+        }   
         public List<OrderDetails> ordersTaken(int orderId)
         {
             List<OrderDetails> list = new List<OrderDetails>();
@@ -110,15 +113,16 @@ namespace Magazin_online.controllers
             }
             return null;
         }
-        public int getOrderAmount(int orderId)
+        public int getOrderAmount(int orderID)
         {
-            int amount = 0;
+            int cantitate = 0;
             foreach(OrderDetails o in orderDetails)
             {
-                if (o.Order_Id == orderId)
-                    amount += o.Amount;
+                if (o.Order_Id==orderID)
+                    cantitate += o.Quantity;
             }
-            return amount;
+            
+            return cantitate;
         }
         public bool VerificareExistentaInCos(int productID,int orderID)
         {
@@ -129,18 +133,19 @@ namespace Magazin_online.controllers
             }
             return false;
         }
-        public void updateAmount(int productID,int orderID, int amount)
+        public void updateAmount(int productID,int productPrice,int orderID, int quantity)
         {
 
             OrderDetails ordeDetails = getOrderDetails(orderID, productID);
-            ordeDetails.Amount += amount;
-
+            ordeDetails.Quantity += quantity;
+            ordeDetails.Amount += quantity * productPrice;
 
         }
         public void updateAmount2(int productID, int orderID, int amount)
         {
             OrderDetails ordeDetails = getOrderDetails(orderID, productID);
-            ordeDetails.Amount = amount;
+            ordeDetails.Quantity = amount;
+            
         }
         public void deleteOrderDetails(int productID, int orderID)
         {

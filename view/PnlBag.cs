@@ -18,8 +18,8 @@ namespace view
         private List<Product> products;
 
         private Order order;
-        
-
+        private Button btnsend;
+        private Label total;
 
         public PnlBag(Order order, FormaPrincipala form)
         {
@@ -38,40 +38,44 @@ namespace view
 
             this.products = new List<Product>();
 
-            
+           
 
             this.loadProducts();
 
             createCards(1);
-           
+            this.Controls.Add(new PnlBagCards(cards, this, form));
+            btnsend = new Button();
+            total = new Label();
+            this.Controls.Add(new PnlBagButtons(order,total,btnsend,this, form));
         }
 
         public void createCards(int nrcollums)
         {
             this.Controls.Clear();
 
-            int x = 30, y = 100, ct = 0;
+            int x = 30, y = 50, ct = 0;
 
 
             foreach (Product p in products)
             {
                 ct++;
-                PnlCardCos pnlprod = new PnlCardCos(p, controlOrderDetails.getOrderDetails(order.ID,p.ID).Amount,controlOrderDetails.getOrderDetails(order.ID, p.ID).Price* controlOrderDetails.getOrderDetails(order.ID, p.ID).Amount,  order,controlOrderDetails.getOrderDetails(order.ID, p.ID),form);
+                PnlCardCos pnlprod = new PnlCardCos(p, controlOrderDetails.getOrderDetails(order.ID,p.ID).Quantity,controlOrderDetails.getOrderDetails(order.ID, p.ID).Amount,  order,controlOrderDetails.getOrderDetails(order.ID, p.ID),form);
                 pnlprod.Location = new Point(x, y);
-                this.Controls.Add(pnlprod);
+                //this.Controls.Add(pnlprod);
                 this.cards.Add(pnlprod);
 
                 x += 300;
                 if (ct % nrcollums == 0)
                 {
                     x = 30;
-                    y += 230;
+                    y += 250;
                 }
-                if (y > this.Height)
+                if (y+200 > this.Height)
                 {
                     this.AutoScroll = true;
                 }
             }
+        
         }
 
 

@@ -1,6 +1,7 @@
 ﻿using Magazin_online.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -9,10 +10,11 @@ namespace Magazin_online.controllers
     public class ControllerOrder
     {
         private List<Order> orders;
-
+      
         public ControllerOrder()
         {
             orders = new List<Order>();
+ 
             this.load();
         }
         public void load()
@@ -81,7 +83,21 @@ namespace Magazin_online.controllers
             }
             return false;
         }
-
+        public Order getOrderById(int id)
+        {
+            foreach(Order o in orders)
+            {
+                if (o.ID == id)
+                    return o;
+            }
+            return null;
+        }
+        public void updatestatus(int orderId)
+        {
+            getOrderById(orderId).Confirm=true;
+            this.save();
+        }
+       
         public void deleteOrder(Order o)
         {
             if (this.orders.Contains(o) == true)

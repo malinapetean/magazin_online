@@ -10,6 +10,7 @@ namespace Magazin_online.Models
         private int order_id;
         private int product_id;
         private int price;//pretul total al detaliului 
+        private int quantity;
         private int amount;
 
 
@@ -33,28 +34,34 @@ namespace Magazin_online.Models
             get => this.price;
             set => this.price = value;
         }
+        public int Quantity
+        {
+            get => this.quantity;
+            set => this.quantity = value;
+        }
         public int Amount
         {
             get => this.amount;
             set => this.amount = value;
         }
-
         public OrderDetails(string txt)
         {
             this.id = int.Parse(txt.Split(",")[0]);
             this.product_id = int.Parse(txt.Split(",")[2]);
             this.order_id = int.Parse(txt.Split(",")[1]);
             this.price = int.Parse(txt.Split(",")[3]);
-            this.amount = int.Parse(txt.Split(",")[4]);
-
+            this.quantity = int.Parse(txt.Split(",")[4]);
+            this.amount = int.Parse(txt.Split(",")[5]);
+            
         }
 
-        public OrderDetails(int id, int order_id,int prod_id,int price,int amount)
+        public OrderDetails(int id, int order_id,int prod_id,int price,int quantity,int amount)
         {
             this.id = id;
             this.order_id = order_id;
             this.price = price;
             this.product_id = prod_id;
+            this.quantity = quantity;
             this.amount = amount;
         }
 
@@ -65,15 +72,16 @@ namespace Magazin_online.Models
             txt += "Order id: " + this.order_id + "\n";
             txt += "Product id: " + this.product_id + "\n";
             txt += "Price: " + this.price + "\n";
-            txt += "Amount: " + this.amount + "\n";
-
+            txt += "Quantity: "  + this.quantity + "\n";
+            txt += "Amount: "  + this.amount + "\n";
+            
             return txt;
         }
 
         public override string ToString()
         {
             string text = "";
-            text += this.id + "," + this.order_id + "," + this.product_id + "," + this.price + "," + this.amount;
+            text += this.id + "," + this.order_id + "," + this.product_id + "," + this.price + "," + this.quantity + "," + this.amount;
 
             return text;
         }

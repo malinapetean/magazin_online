@@ -127,7 +127,7 @@ namespace view
             //are deja produsl in cos atunci trebuie updatat orderuldetails din care face parte daca nu trebuie creat unu nou
             if(orderDetails.VerificareExistentaInCos(prod.ID,order.ID)==false)
             {
-                OrderDetails orderDet = new OrderDetails(orderDetails.nextId(), order.ID, prod.ID, prod.Price, 1);
+                OrderDetails orderDet = new OrderDetails(orderDetails.nextId(), order.ID, prod.ID, prod.Price, 1,prod.Price*1);
 
                 this.orderDetails.addOderDetails(orderDet);
                 this.orderDetails.save();
@@ -137,7 +137,7 @@ namespace view
             else if(orderDetails.VerificareExistentaInCos(prod.ID, order.ID) == true)
             {
 
-                orderDetails.updateAmount( prod.ID, order.ID, 1);
+                orderDetails.updateAmount( prod.ID,prod.Price, order.ID, 1);
 
                 this.orderDetails.save();
             }

@@ -3,3 +3,5 @@
 3,lotiune,40,66,creamy and hydrating,lotiune
 4,crema de corp,65,50,nice scent,crema
 5,sampon,30,200,volume,sampon
+6,sampon fain,40,100,Reparare,sampon
+7,sampon uscat,20,174,fast wash,fixativ

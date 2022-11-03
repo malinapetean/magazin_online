@@ -19,6 +19,12 @@
     <Compile Update="PnlBag.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="PnlBagButtons.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="PnlBagCards.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="PnlCardCos.cs">
       <SubType>Component</SubType>
     </Compile>
