@@ -29,7 +29,7 @@ namespace ConsoleApp1
             Console.WriteLine(o.Ammount = ordDet.getOrderAmount(o.ID));
             o.Confirm = true;
             ctrlOrder.save();
-
+            Console.WriteLine(ordDet.getTotalPlata(9));
 
         }
     }

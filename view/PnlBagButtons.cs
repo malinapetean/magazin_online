@@ -21,12 +21,15 @@ namespace view
         public PnlBagButtons(Order order,Label total,Button btnSend,PnlBag bag,FormaPrincipala form)
         {
             this.form = form;
+            this.order = order;
             this.bag = bag;
             this.Parent = bag;
             this.Location = new Point(this.Parent.Width / 2, 150);
             this.Size = new Size(this.Parent.Width / 2, this.Parent.Height - 250);
             this.BackColor = Color.Wheat;
             this.Name = "PnlBagButtons";
+            this.orderDetails = new ControllerOrderDetails();
+            this.ctrlOrder = new ControllerOrder();
 
             btnSendOrder = btnSend;
             btnSendOrder.Location = new Point(this.Width - 150, 15);
@@ -43,28 +46,29 @@ namespace view
             totalPlata.Location = new Point(this.Width - 150, 60);
             totalPlata.Size = new Size(140, 40);
             totalPlata.FlatStyle = FlatStyle.Flat;
-            totalPlata.Text = "Total: ";
+            totalPlata.Text = "Total: "+orderDetails.getTotalPlata(order.ID).ToString();
             totalPlata.Font = new Font("Times New Roman", 12, FontStyle.Bold);
             totalPlata.ForeColor = Color.Black;
             totalPlata.BackColor = Color.PapayaWhip;
             this.Controls.Add(totalPlata);
+            
 
-
-            this.order = order;
-            this.orderDetails = new ControllerOrderDetails();
-            this.ctrlOrder = new ControllerOrder();
+            
+            
         }
         public void updateamount(int orderId)
         {
             
+            Order order = ctrlOrder.getOrderById(orderId);
             int val = orderDetails.getOrderAmount(orderId);
             order.Ammount = val;
             
         }
+        
         private void send_Click(object sender, EventArgs e)
         {
 
-
+            orderDetails.load();
             if (ctrlOrder.verificareExistenta(this.order.ID) == true)
             {
                 ctrlOrder.updatestatus(order.ID);
@@ -77,8 +81,7 @@ namespace view
                 MessageBox.Show("Add something in your bag!");
             }
 
-
-
         }
+        
     }
 }

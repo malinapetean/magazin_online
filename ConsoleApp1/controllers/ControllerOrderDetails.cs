@@ -147,6 +147,16 @@ namespace Magazin_online.controllers
             ordeDetails.Quantity = amount;
             
         }
+        public int getTotalPlata(int OrderId)
+        {
+            int tot = 0;
+            foreach(OrderDetails o in orderDetails)
+            {
+                if (o.Order_Id == OrderId)
+                    tot += o.Amount;
+            }
+            return tot;
+        }
         public void deleteOrderDetails(int productID, int orderID)
         {
             for(int i=0;i<orderDetails.Count;i++)

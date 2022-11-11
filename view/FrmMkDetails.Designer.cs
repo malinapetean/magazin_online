@@ -57,9 +57,9 @@ namespace view
             this.label3.Font = new System.Drawing.Font("Segoe UI", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.label3.Location = new System.Drawing.Point(604, 16);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 41);
+            this.label3.Size = new System.Drawing.Size(36, 41);
             this.label3.TabIndex = 13;
-            this.label3.Text = "Dress";
+            this.label3.Text = "d";
             // 
             // label2
             // 
@@ -95,7 +95,7 @@ namespace view
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(139, 40);
             this.button1.TabIndex = 14;
-            this.button1.Text = "Add to bag";
+            this.button1.Text = "d";
             this.button1.UseVisualStyleBackColor = false;
             // 
             // textBox1
