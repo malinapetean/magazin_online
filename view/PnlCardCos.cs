@@ -90,18 +90,37 @@ namespace view
 
 
         }
+
+        public Control getPanel(String panel)
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control.Name.Equals(panel))
+                {
+                    return control;
+
+                }
+            }
+            return null;
+        }
         private void card_Click(object sender, EventArgs e) 
         {
             this.form.erasePanel("PnlBag");
             this.form.Controls.Add(new PnlDetails(form, control.getProdByID(product.ID),order));
 
         }
-        private void updatePret(int amount)
+        private void updatePret(int quantity)
         {
 
-            this.price.Text = amount * product.Price + " LEI";
-            controllerOrderDetails.updateAmount2(product.ID, order.ID, amount);
+            this.price.Text = quantity * product.Price + " LEI";
+            controllerOrderDetails.updateAmount(product.ID,product.Price, order.ID, 1);
+
+
+            PnlBag pnlBag = this.form.getPanel("PnlBag") as PnlBag;
+
+            PnlBagButtons pnlBagButtons = pnlBag.getPanel("PnlBagButtons") as PnlBagButtons;
             controllerOrderDetails.save();
+            pnlBagButtons.updateTotal();
 
         }
         private void updatePrice_ValueChanged(object sender, EventArgs e)

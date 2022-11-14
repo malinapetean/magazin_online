@@ -34,5 +34,17 @@ namespace view
      
 
         }
+        public Control getPanel(String panel)
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control.Name.Equals(panel))
+                {
+                    return control;
+
+                }
+            }
+            return null;
+        }
     }
 }

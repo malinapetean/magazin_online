@@ -141,10 +141,11 @@ namespace Magazin_online.controllers
             ordeDetails.Amount += quantity * productPrice;
 
         }
-        public void updateAmount2(int productID, int orderID, int amount)
+        public void updateAmount2(int productID,int productPrice, int orderID,  int quantity)
         {
             OrderDetails ordeDetails = getOrderDetails(orderID, productID);
-            ordeDetails.Quantity = amount;
+            ordeDetails.Quantity = quantity;
+            ordeDetails.Amount = ordeDetails.Quantity * ordeDetails.Price;
             
         }
         public int getTotalPlata(int OrderId)
