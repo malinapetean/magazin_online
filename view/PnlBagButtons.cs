@@ -51,10 +51,28 @@ namespace view
             totalPlata.ForeColor = Color.Black;
             totalPlata.BackColor = Color.PapayaWhip;
             this.Controls.Add(totalPlata);
-            
 
+           
             
             
+        }
+
+        public void updateTotal()
+        {
+            orderDetails.load();
+            totalPlata.Text="Total: "+ orderDetails.getTotalPlata(order.ID);
+        }
+        public Control getPanel(String panel)
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control.Name.Equals(panel))
+                {
+                    return control;
+
+                }
+            }
+            return null;
         }
         public void updateamount(int orderId)
         {
