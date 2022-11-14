@@ -16,6 +16,9 @@
     <Compile Update="FrmMkDetails.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FrmMkLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="PnlBag.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -35,6 +38,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="PnlHeader.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="PnlSignIn.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="PnlMain.cs">

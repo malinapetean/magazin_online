@@ -41,8 +41,8 @@ namespace view
             this.btnsend = new Button();
             this.btnprod.Click += new EventHandler(products_Click);
             this.Controls.Add(new PnlHeader(order,btnprod,btnsend,this));
-            this.Controls.Add(new PnlMain(ctrlproducts.getAll(),order,this));
-            
+            //this.Controls.Add(new PnlMain(ctrlproducts.getAll(),order,this));
+            this.Controls.Add(new PnlSignIn(this));
         }
         public void erasePanel(String name)
         {
