@@ -8,46 +8,47 @@ using System.Windows.Forms;
 
 namespace view
 {
-    class PnlSignIn : Panel
+    class PnlSignUp:Panel
     {
-        private Label signIn;
+        private Label signUp;
         private Label fullname;
         private Label email;
         private Label password;
         private TextBox txtFullName;
         private TextBox txtEmail;
         private TextBox txtPassword;
-        private Button btnSignIn;
-        private Button btnRegister;
+        private Button btnSignUp;
+        private Button btnCancel;
         private FormaPrincipala form;
+        private ControllerCustomer controlUser;
+        private ControllerProduct controlProduct;
         private Order order;
         private ControllerOrder controlOrder;
-        private ControllerCustomer controlUser;
-        private ControllerProduct ctrlproducts;
-       
-        public PnlSignIn(FormaPrincipala form)
+
+
+        public PnlSignUp(FormaPrincipala form)
         {
             controlUser = new ControllerCustomer();
+            controlProduct = new ControllerProduct();
             controlOrder = new ControllerOrder();
-            ctrlproducts = new ControllerProduct();
             this.form = form;
             this.Parent = form;
             this.Size = new Size(this.Parent.Width, this.Parent.Height);
-            this.BackColor = Color.OldLace;
+            this.BackColor = Color.SeaShell;
             this.Location = new Point(0, 70);
-            this.Name = "PnlSignIn";
+            this.Name = "PnlSignUp";
             this.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             this.Dock = DockStyle.Fill;
 
             Font font = new Font("Times New Roman", 28, FontStyle.Bold);
-            this.signIn = new Label();
-            this.signIn.Location = new Point(573, 81);
-            this.signIn.Size = new Size(180, 55);
-            this.signIn.ForeColor = Color.DarkGoldenrod;
-            this.signIn.Font = font;
-            this.signIn.Text = "Sign In";
-            this.signIn.BackColor = Color.Transparent;
-            this.Controls.Add(signIn);
+            this.signUp = new Label();
+            this.signUp.Location = new Point(573, 81);
+            this.signUp.Size = new Size(190, 55);
+            this.signUp.ForeColor = Color.SaddleBrown;
+            this.signUp.Font = font;
+            this.signUp.Text = "Sign Up";
+            this.signUp.BackColor = Color.Transparent;
+            this.Controls.Add(signUp);
 
             Font labels = new Font("Times New Roman", 14, FontStyle.Regular);
             this.fullname = new Label();
@@ -65,7 +66,6 @@ namespace view
             this.txtFullName.BackColor = Color.White;
             this.txtFullName.ForeColor = Color.Black;
             this.Controls.Add(txtFullName);
-
 
             this.email = new Label();
             this.email.Location = new Point(433, 240);
@@ -99,66 +99,62 @@ namespace view
             this.txtPassword.ForeColor = Color.Black;
             this.Controls.Add(txtPassword);
 
-            this.btnSignIn = new Button();
-            this.btnSignIn.Location = new Point(544, 418);
-            this.btnSignIn.Size = new Size(95, 35);
-            this.btnSignIn.FlatStyle = FlatStyle.Popup;
-            this.btnSignIn.Text = "Sign In";
-            this.btnSignIn.Font = new Font("Times New Roman", 14, FontStyle.Bold);
-            this.btnSignIn.ForeColor = Color.OldLace;
-            this.btnSignIn.BackColor = Color.Goldenrod;
-            this.Controls.Add(btnSignIn);
-            this.btnSignIn.Click += new EventHandler(signIn_Click);
+            this.btnSignUp = new Button();
+            this.btnSignUp.Location = new Point(545, 418);
+            this.btnSignUp.Size = new Size(115, 35);
+            this.btnSignUp.FlatStyle = FlatStyle.Popup;
+            this.btnSignUp.Text = "Sign Up";
+            this.btnSignUp.Font = new Font("Times New Roman", 14, FontStyle.Bold);
+            this.btnSignUp.ForeColor = Color.SeaShell;
+            this.btnSignUp.BackColor = Color.SaddleBrown;
+            this.Controls.Add(btnSignUp);
+            this.btnSignUp.Click += new EventHandler(signUp_Click);
 
-            this.btnRegister = new Button();
-            this.btnRegister.Location = new Point(675, 418);
-            this.btnRegister.Size = new Size(115, 35);
-            this.btnRegister.FlatStyle = FlatStyle.Popup;
-            this.btnRegister.Text = "Register";
-            this.btnRegister.Font = new Font("Times New Roman", 14, FontStyle.Regular);
-            this.btnRegister.ForeColor = Color.DarkGoldenrod;
-            this.btnRegister.BackColor = Color.OldLace;
-            this.Controls.Add(btnRegister);
-            this.btnRegister.Click += new EventHandler(register_Click);
+            this.btnCancel = new Button();
+            this.btnCancel.Location = new Point(675, 418);
+            this.btnCancel.Size = new Size(115, 35);
+            this.btnCancel.FlatStyle = FlatStyle.Popup;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Font = new Font("Times New Roman", 14, FontStyle.Regular);
+            this.btnCancel.ForeColor = Color.SaddleBrown;
+            this.btnCancel.BackColor = Color.SeaShell;
+            this.Controls.Add(btnCancel);
+            this.btnCancel.Click += new EventHandler(cancel_Click);
 
-            
         }
-        private void signIn_Click(object sender, EventArgs e)
-        {
-            
-            if(controlUser.getUser(txtPassword.Text, txtEmail.Text)!=null)
-            {
-                MessageBox.Show("aici");
-                User user = controlUser.getUser(txtPassword.Text, txtEmail.Text);
-                this.form.user = controlUser.getUser(txtPassword.Text, txtEmail.Text);
-                if (user != null)
-                {
 
-                    Order  order= new Order(controlOrder.nextId(), user.ID, 0, false);
-                    this.form.Order = order;
-                    controlOrder.addOrder(order);
-                    controlOrder.save();
-                    this.form.Controls.Add(new PnlMain(ctrlproducts.getAll(),order,form));
-                    this.form.Controls.Remove(this);
-                }
+
+        private void signUp_Click(object sender, EventArgs e)
+        {
+
+            if (!(txtEmail.Text.Equals("")|| txtFullName.Text.Equals("")||txtPassword.Text.Equals("")))
+            {
+
                
+                User user = new User("customer", controlUser.nextId(), txtEmail.Text, txtPassword.Text, txtFullName.Text);
+                Order order = new Order(controlOrder.nextId(), controlUser.nextId(), 0, false);
+                controlOrder.addOrder(order);
+                controlOrder.save();
+                controlUser.addUser(user);
+                controlUser.save();
+                
+                this.form.Controls.Add(new PnlMain(this.controlProduct.getAll(),order, form));
+                this.form.Controls.Remove(this);
             }
             else
             {
-                MessageBox.Show("Email/Password was incorect!");
+                MessageBox.Show("Complete all Boxes");
             }
-           
+
 
         }
-        private void register_Click(object sender, EventArgs e)
+        private void cancel_Click(object sender, EventArgs e)
         {
-            this.form.Controls.Add(new PnlSignUp(form));
+
+            this.form.Controls.Add(new PnlSignIn(form));
             this.form.Controls.Remove(this);
 
-
         }
-
-
 
 
     }

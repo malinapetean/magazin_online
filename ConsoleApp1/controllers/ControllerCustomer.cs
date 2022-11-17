@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Magazin_online.controllers
 {
-    class ControllerCustomer
+    public class ControllerCustomer
     {
         private List<User> customers;
 
@@ -55,6 +55,28 @@ namespace Magazin_online.controllers
         {
             int nr = customers.Count;
             return customers[nr - 1].ID + 1;
+        }
+
+        public bool addUser(User u)
+        {
+            if (customers.Contains(u) == false)
+            {
+                this.customers.Add(u);
+                return true;
+            }
+            return false;
+
+        }
+        public User getUser(string password, string email)
+        {
+            foreach(User c in customers)
+            {
+                if(c.Email.Equals(email) && c.Password.Equals(password))
+                {
+                    return c;
+                }
+            }
+            return null;
         }
     }
 }

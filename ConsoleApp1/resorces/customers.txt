@@ -1,3 +1,7 @@
-﻿customer,100,alex@yahoo.com,11234,Alex Luca,4
-customer101,andreinpopescu@gmail.com,12345678, Andrei Popescu,7
+customer,100,alex@yahoo.com,11234,Alex Luca
+customer,101,andreinpopescu@gmail.com,12345678,Andrei Popescu
 admin,102,malinapetean@gmail.com,1234,Petean Anamaria
+customer,103,anam@gmail.com,ehehe,anamaria pete
+customer,104,alepe@gmail.com,eeeee,alexia
+customer,105,alexp@gmail.com,1234,Alex Pop
+customer,106,alepetean@yahoo.com,12344321,Alexia Petean

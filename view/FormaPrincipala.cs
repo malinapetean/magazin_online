@@ -15,7 +15,8 @@ namespace view
     public partial class FormaPrincipala : Form
     {
         private ControllerProduct ctrlproducts;
-        private User user = new Customer("customer", 100, "alex@yahoo.com", "11234", "Alex Luca", 4);
+        //public User user = new Customer("customer", 100, "alex@yahoo.com", "11234", "Alex Luca", 4);
+        public User user=null;
         private Button btnprod;
         private Button btnsend;
         private Order order;
@@ -26,12 +27,15 @@ namespace view
             InitializeComponent();
             this.ctrlproducts = new ControllerProduct();
             this.controlOrder = new ControllerOrder();
-            this.order = new Order(controlOrder.nextId(), 100, 0,false);
 
-            controlOrder.addOrder(order);
+            
+
+            //this.order = new Order(controlOrder.nextId(), 100, 0,false);
+
+            //controlOrder.addOrder(order);
 
 
-            controlOrder.save();
+            //controlOrder.save();
         
             this.StartPosition = FormStartPosition.CenterScreen;
             this.WindowState = FormWindowState.Maximized;
@@ -86,7 +90,17 @@ namespace view
             return null;
         }
 
+        public Order Order
+        {
+            get => this.order;
+            set => this.order = value;
+        }
 
+        public User User
+        {
+            get => this.user;
+            set => this.user = value;
+        }
         private void products_Click(object sender, EventArgs e)
         {
             if (searchPanel("PnlMain"))

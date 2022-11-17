@@ -19,17 +19,22 @@ namespace ConsoleApp1
             OrderDetails ord = new OrderDetails(4, o.ID, p.ID, p.Price, 5,5*p.Price);
             OrderDetails ord2 = new OrderDetails(5, o.ID, p2.ID, p2.Price,2,2*p2.Price);
            
-            ControllerOrderDetails ordDet = new ControllerOrderDetails();
-            //ordDet.addOderDetails(ord);
-            List<OrderDetails> listORderDetails = new List<OrderDetails>();
-            listORderDetails.Add(ord);
-            listORderDetails.Add(ord2);
-            ordDet.display(listORderDetails);
+            //ControllerOrderDetails ordDet = new ControllerOrderDetails();
+            ////ordDet.addOderDetails(ord);
+            //List<OrderDetails> listORderDetails = new List<OrderDetails>();
+            //listORderDetails.Add(ord);
+            //listORderDetails.Add(ord2);
+            //ordDet.display(listORderDetails);
 
-            Console.WriteLine(o.Ammount = ordDet.getOrderAmount(o.ID));
-            o.Confirm = true;
-            ctrlOrder.save();
-            Console.WriteLine(ordDet.getTotalPlata(9));
+            //Console.WriteLine(o.Ammount = ordDet.getOrderAmount(o.ID));
+            //o.Confirm = true;
+            //ctrlOrder.save();
+            //Console.WriteLine(ordDet.getTotalPlata(9));
+
+            ControllerCustomer ctrlUSer = new ControllerCustomer();
+            Console.WriteLine(ctrlUSer.getUser("12345678", "andreinpopescu@gmail.com"));
+            User user = ctrlUSer.getUser("12345678", "andreinpopescu@gmail.com");
+            Console.WriteLine(user.description());
 
         }
     }
