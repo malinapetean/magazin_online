@@ -41,7 +41,7 @@ namespace view
 
             Font font = new Font("Times New Roman", 28, FontStyle.Bold);
             this.signIn = new Label();
-            this.signIn.Location = new Point(573, 81);
+            this.signIn.Location = new Point(573, 130);
             this.signIn.Size = new Size(180, 55);
             this.signIn.ForeColor = Color.DarkGoldenrod;
             this.signIn.Font = font;
@@ -50,21 +50,21 @@ namespace view
             this.Controls.Add(signIn);
 
             Font labels = new Font("Times New Roman", 14, FontStyle.Regular);
-            this.fullname = new Label();
-            this.fullname.Location = new Point(433, 151);
-            this.fullname.Size = new Size(130, 26);
-            this.fullname.ForeColor = Color.Black;
-            this.fullname.Font = labels;
-            this.fullname.Text = "Full Name";
-            this.fullname.BackColor = Color.Transparent;
-            this.Controls.Add(fullname);
+            //this.fullname = new Label();
+            //this.fullname.Location = new Point(433, 151);
+            //this.fullname.Size = new Size(130, 26);
+            //this.fullname.ForeColor = Color.Black;
+            //this.fullname.Font = labels;
+            //this.fullname.Text = "Full Name";
+            //this.fullname.BackColor = Color.Transparent;
+            //this.Controls.Add(fullname);
 
-            this.txtFullName = new TextBox();
-            this.txtFullName.Location = new Point(433, 180);
-            this.txtFullName.Size = new Size(431, 34);
-            this.txtFullName.BackColor = Color.White;
-            this.txtFullName.ForeColor = Color.Black;
-            this.Controls.Add(txtFullName);
+            //this.txtFullName = new TextBox();
+            //this.txtFullName.Location = new Point(433, 180);
+            //this.txtFullName.Size = new Size(431, 34);
+            //this.txtFullName.BackColor = Color.White;
+            //this.txtFullName.ForeColor = Color.Black;
+            //this.Controls.Add(txtFullName);
 
 
             this.email = new Label();
@@ -128,18 +128,21 @@ namespace view
             
             if(controlUser.getUser(txtPassword.Text, txtEmail.Text)!=null)
             {
-                MessageBox.Show("aici");
+              
                 User user = controlUser.getUser(txtPassword.Text, txtEmail.Text);
-                this.form.user = controlUser.getUser(txtPassword.Text, txtEmail.Text);
+          
                 if (user != null)
                 {
+                    MessageBox.Show("aici");
 
                     Order  order= new Order(controlOrder.nextId(), user.ID, 0, false);
                     this.form.Order = order;
+                    this.form.User = user;
                     controlOrder.addOrder(order);
                     controlOrder.save();
                     this.form.Controls.Add(new PnlMain(ctrlproducts.getAll(),order,form));
                     this.form.Controls.Remove(this);
+                    this.form.addHeader();
                 }
                
             }

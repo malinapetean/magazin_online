@@ -28,7 +28,7 @@ namespace view
             this.ctrlproducts = new ControllerProduct();
             this.controlOrder = new ControllerOrder();
 
-            
+            this.User = null;
 
             //this.order = new Order(controlOrder.nextId(), 100, 0,false);
 
@@ -100,6 +100,12 @@ namespace view
         {
             get => this.user;
             set => this.user = value;
+        }
+
+        public void addHeader()
+        {
+            this.erasePanel("PnlHeader");
+            this.Controls.Add(new PnlHeader(order, btnprod, btnsend, this));
         }
         private void products_Click(object sender, EventArgs e)
         {

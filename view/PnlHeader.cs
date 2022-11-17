@@ -38,7 +38,7 @@ namespace view
             this.Parent = form;
             this.order = order; 
             this.form = form;
-            if(this.form.user!=null)
+            if(this.form.User!=null)
             {
                 btnCos = products;
                 btnCos.Location = new Point(this.Parent.Width-130, 15);

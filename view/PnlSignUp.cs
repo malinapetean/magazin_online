@@ -138,8 +138,9 @@ namespace view
                 controlUser.addUser(user);
                 controlUser.save();
                 
-                this.form.Controls.Add(new PnlMain(this.controlProduct.getAll(),order, form));
+                this.form.Controls.Add(new PnlSignIn(form));
                 this.form.Controls.Remove(this);
+                
             }
             else
             {

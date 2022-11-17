@@ -5,3 +5,7 @@ customer,103,anam@gmail.com,ehehe,anamaria pete
 customer,104,alepe@gmail.com,eeeee,alexia
 customer,105,alexp@gmail.com,1234,Alex Pop
 customer,106,alepetean@yahoo.com,12344321,Alexia Petean
+customer,107,arinaene@yahoo.com,1111,Arina Ene
+customer,108,david123@gmail.com,2004,David Bucur
+customer,109,adadaffa,abshshhs,Alex
+customer,110,test@g.com,1234,daste
