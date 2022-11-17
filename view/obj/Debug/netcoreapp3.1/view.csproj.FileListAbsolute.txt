@@ -27,3 +27,4 @@ D:\mycode\csharp\Mostenirea\Magazin_online\view\obj\Debug\netcoreapp3.1\view.dll
 D:\mycode\csharp\Mostenirea\Magazin_online\view\obj\Debug\netcoreapp3.1\view.pdb
 D:\mycode\csharp\Mostenirea\Magazin_online\view\obj\Debug\netcoreapp3.1\view.genruntimeconfig.cache
 D:\mycode\csharp\Mostenirea\Magazin_online\view\obj\Debug\netcoreapp3.1\view.FrmMkLogin.resources
+D:\mycode\csharp\Mostenirea\Magazin_online\view\obj\Debug\netcoreapp3.1\view.FrmMkSignUp.resources

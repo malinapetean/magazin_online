@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Magazin_online.controllers;
+using Magazin_online.Models;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
@@ -6,7 +8,7 @@ using System.Windows.Forms;
 
 namespace view
 {
-    class PnlSignIn:Panel
+    class PnlSignIn : Panel
     {
         private Label signIn;
         private Label fullname;
@@ -18,8 +20,16 @@ namespace view
         private Button btnSignIn;
         private Button btnRegister;
         private FormaPrincipala form;
+        private Order order;
+        private ControllerOrder controlOrder;
+        private ControllerCustomer controlUser;
+        private ControllerProduct ctrlproducts;
+       
         public PnlSignIn(FormaPrincipala form)
         {
+            controlUser = new ControllerCustomer();
+            controlOrder = new ControllerOrder();
+            ctrlproducts = new ControllerProduct();
             this.form = form;
             this.Parent = form;
             this.Size = new Size(this.Parent.Width, this.Parent.Height);
@@ -31,8 +41,8 @@ namespace view
 
             Font font = new Font("Times New Roman", 28, FontStyle.Bold);
             this.signIn = new Label();
-            this.signIn.Location = new Point(573, 81);
-            this.signIn.Size = new Size(160, 55);
+            this.signIn.Location = new Point(573, 130);
+            this.signIn.Size = new Size(180, 55);
             this.signIn.ForeColor = Color.DarkGoldenrod;
             this.signIn.Font = font;
             this.signIn.Text = "Sign In";
@@ -40,21 +50,21 @@ namespace view
             this.Controls.Add(signIn);
 
             Font labels = new Font("Times New Roman", 14, FontStyle.Regular);
-            this.fullname = new Label();
-            this.fullname.Location = new Point(433, 151);
-            this.fullname.Size = new Size(130, 26);
-            this.fullname.ForeColor = Color.Black;
-            this.fullname.Font = labels;
-            this.fullname.Text = "Full Name";
-            this.fullname.BackColor = Color.Transparent;
-            this.Controls.Add(fullname);
+            //this.fullname = new Label();
+            //this.fullname.Location = new Point(433, 151);
+            //this.fullname.Size = new Size(130, 26);
+            //this.fullname.ForeColor = Color.Black;
+            //this.fullname.Font = labels;
+            //this.fullname.Text = "Full Name";
+            //this.fullname.BackColor = Color.Transparent;
+            //this.Controls.Add(fullname);
 
-            this.txtFullName = new TextBox();
-            this.txtFullName.Location = new Point(433, 180);
-            this.txtFullName.Size = new Size(431, 34);
-            this.txtFullName.BackColor = Color.White;
-            this.txtFullName.ForeColor = Color.Black;
-            this.Controls.Add(txtFullName);
+            //this.txtFullName = new TextBox();
+            //this.txtFullName.Location = new Point(433, 180);
+            //this.txtFullName.Size = new Size(431, 34);
+            //this.txtFullName.BackColor = Color.White;
+            //this.txtFullName.ForeColor = Color.Black;
+            //this.Controls.Add(txtFullName);
 
 
             this.email = new Label();
@@ -98,6 +108,7 @@ namespace view
             this.btnSignIn.ForeColor = Color.OldLace;
             this.btnSignIn.BackColor = Color.Goldenrod;
             this.Controls.Add(btnSignIn);
+            this.btnSignIn.Click += new EventHandler(signIn_Click);
 
             this.btnRegister = new Button();
             this.btnRegister.Location = new Point(675, 418);
@@ -108,7 +119,49 @@ namespace view
             this.btnRegister.ForeColor = Color.DarkGoldenrod;
             this.btnRegister.BackColor = Color.OldLace;
             this.Controls.Add(btnRegister);
+            this.btnRegister.Click += new EventHandler(register_Click);
+
+            
         }
+        private void signIn_Click(object sender, EventArgs e)
+        {
+            
+            if(controlUser.getUser(txtPassword.Text, txtEmail.Text)!=null)
+            {
+              
+                User user = controlUser.getUser(txtPassword.Text, txtEmail.Text);
+          
+                if (user != null)
+                {
+                    MessageBox.Show("aici");
+
+                    Order  order= new Order(controlOrder.nextId(), user.ID, 0, false);
+                    this.form.Order = order;
+                    this.form.User = user;
+                    controlOrder.addOrder(order);
+                    controlOrder.save();
+                    this.form.Controls.Add(new PnlMain(ctrlproducts.getAll(),order,form));
+                    this.form.Controls.Remove(this);
+                    this.form.addHeader();
+                }
+               
+            }
+            else
+            {
+                MessageBox.Show("Email/Password was incorect!");
+            }
+           
+
+        }
+        private void register_Click(object sender, EventArgs e)
+        {
+            this.form.Controls.Add(new PnlSignUp(form));
+            this.form.Controls.Remove(this);
+
+
+        }
+
+
 
 
     }
