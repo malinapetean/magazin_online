@@ -21,13 +21,13 @@ namespace view
         private Button btnsend;
         private Label total;
 
-        public PnlBag(Order order, FormaPrincipala form)
+        public PnlBag(FormaPrincipala form)
         {
             this.cards = new List<PnlCardCos>();
             this.controlProducts = new ControllerProduct();
             this.controlOrderDetails = new ControllerOrderDetails();
             this.form = form;
-            this.order = order;
+            this.order = this.form.Order;
             base.Parent = form;
             this.Location = new Point(0, 70);
             this.BackColor = Color.BurlyWood;
@@ -46,7 +46,7 @@ namespace view
             this.Controls.Add(new PnlBagCards(cards, this, form));
             btnsend = new Button();
             total = new Label();
-            this.Controls.Add(new PnlBagButtons(order,total,btnsend,this, form));
+            this.Controls.Add(new PnlBagButtons(total,btnsend,this, form));
         }
 
         public void createCards(int nrcollums)

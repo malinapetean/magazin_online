@@ -18,10 +18,10 @@ namespace view
         private ControllerOrderDetails orderDetails;
         private Order order;
 
-        public PnlBagButtons(Order order,Label total,Button btnSend,PnlBag bag,FormaPrincipala form)
+        public PnlBagButtons(Label total,Button btnSend,PnlBag bag,FormaPrincipala form)
         {
             this.form = form;
-            this.order = order;
+            this.order = this.form.Order;
             this.bag = bag;
             this.Parent = bag;
             this.Location = new Point(this.Parent.Width / 2, 150);
@@ -93,6 +93,15 @@ namespace view
                 updateamount(order.ID);
                 this.ctrlOrder.save();
 
+
+                this.form.erasePanel("PnlBag");
+                Order ord = new Order(ctrlOrder.nextId(), this.form.User.ID, 0, false);
+                ctrlOrder.addOrder(ord);
+                this.ctrlOrder.save();
+                this.form.Order = ord;
+                this.form.Controls.Add(new PnlBag(form));
+
+          
             }
             else
             {

@@ -26,14 +26,14 @@ namespace view
         private Order order;
         private ControllerOrderDetails orderDetails;
 
-        public PnlDetails(FormaPrincipala form,Product p,Order order)
+        public PnlDetails(FormaPrincipala form,Product p)
         {
             orderDetails = new ControllerOrderDetails();
             products = new ControllerProduct();
             this.prod = p;
             this.form = form;
             base.Parent = form;
-            this.order = order;
+            this.order = form.Order;
             this.Location = new Point(0, 100);
             this.BackColor = Color.Wheat;
             this.Name = "PnlDetails";
