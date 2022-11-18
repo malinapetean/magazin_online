@@ -106,7 +106,7 @@ namespace view
         private void card_Click(object sender, EventArgs e) 
         {
             this.form.erasePanel("PnlBag");
-            this.form.Controls.Add(new PnlDetails(form, control.getProdByID(product.ID),order));
+            this.form.Controls.Add(new PnlDetails(form, control.getProdByID(product.ID)));
 
         }
         private void updatePret(int quantity)

@@ -91,7 +91,7 @@ namespace view
             this.form.erasePanel("PnlMain");
             this.form.erasePanel("PnlDetails");
 
-            this.form.Controls.Add(new PnlBag(order, form));
+            this.form.Controls.Add(new PnlBag( form));
 
         }
        

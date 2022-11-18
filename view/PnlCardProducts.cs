@@ -56,7 +56,7 @@ namespace view
         private void card_Click(object sender, EventArgs e)
         {
             this.form.erasePanel("PnlMain");
-            this.form.Controls.Add(new PnlDetails( form, control.getProdByID(product.ID),order));
+            this.form.Controls.Add(new PnlDetails( form, control.getProdByID(product.ID)));
         }
     }
 }
