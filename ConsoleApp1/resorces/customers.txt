@@ -8,4 +8,3 @@ customer,106,alepetean@yahoo.com,12344321,Alexia Petean
 customer,107,arinaene@yahoo.com,1111,Arina Ene
 customer,108,david123@gmail.com,2004,David Bucur
 customer,109,adadaffa,abshshhs,Alex
-customer,110,test@g.com,1234,daste
