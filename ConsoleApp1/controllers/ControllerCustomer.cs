@@ -67,6 +67,15 @@ namespace Magazin_online.controllers
             return false;
 
         }
+        public void deleteUser(string password,string email)
+        {
+            for (int i = 0; i < customers.Count; i++)
+            {
+                if (customers[i].Password.Equals(password) && customers[i].Email.Equals(email))
+                    customers.RemoveAt(i);
+            }
+            this.save();
+        }
         public User getUser(string password, string email)
         {
             foreach(User c in customers)

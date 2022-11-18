@@ -44,7 +44,7 @@ namespace view
             this.btnprod = new Button();
             this.btnsend = new Button();
             this.btnprod.Click += new EventHandler(products_Click);
-            this.Controls.Add(new PnlHeader(order,btnprod,btnsend,this));
+            this.Controls.Add(new PnlHeader(btnprod,btnsend,this));
             //this.Controls.Add(new PnlMain(ctrlproducts.getAll(),order,this));
             this.Controls.Add(new PnlSignIn(this));
         }
@@ -105,7 +105,7 @@ namespace view
         public void addHeader()
         {
             this.erasePanel("PnlHeader");
-            this.Controls.Add(new PnlHeader(order, btnprod, btnsend, this));
+            this.Controls.Add(new PnlHeader(btnprod, btnsend, this));
         }
         private void products_Click(object sender, EventArgs e)
         {
