@@ -4,10 +4,11 @@ using System.Text;
 
 namespace Magazin_online.Models
 {
-    public class Admin
+    enum Permisiuni
     {
-        private string rol;
-
-
+        USER_READ,
+        USER_WRITE,
+        PRODUCT_READ,
+        PRODUCT_WRITE
     }
 }
