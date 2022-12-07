@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Magazin_online.Models
 {
-    enum Permisiuni
+    public enum Permisiuni
     {
         USER_READ,
         USER_WRITE,

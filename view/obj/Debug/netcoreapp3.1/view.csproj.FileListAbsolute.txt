@@ -29,3 +29,4 @@ D:\mycode\csharp\Mostenirea\Magazin_online\view\obj\Debug\netcoreapp3.1\view.gen
 D:\mycode\csharp\Mostenirea\Magazin_online\view\obj\Debug\netcoreapp3.1\view.FrmMkLogin.resources
 D:\mycode\csharp\Mostenirea\Magazin_online\view\obj\Debug\netcoreapp3.1\view.FrmMkSignUp.resources
 D:\mycode\csharp\Mostenirea\Magazin_online\view\obj\Debug\netcoreapp3.1\view.csproj.CopyComplete
+D:\mycode\csharp\Mostenirea\Magazin_online\view\obj\Debug\netcoreapp3.1\view.FrmMkAdmin.resources
