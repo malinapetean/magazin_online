@@ -12,9 +12,8 @@ namespace ConsoleApp1
 
 
 
-            Permisiuni p = Permisiuni.USER_READ;
-
-            Console.WriteLine((int)p);
+            Admin ad = new Admin("admin,102,malinapetean@gmail.com,1234,Petean Anamaria,USER_READ,PRODUCT_READ");
+            Console.WriteLine(ad.description());
 
         }
     }
